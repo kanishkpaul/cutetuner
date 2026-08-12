@@ -1,0 +1,54 @@
+{
+  "budget_bytes": 5368709120,
+  "models": [
+    {
+      "id": "melband-roformer-vocals",
+      "filename": "vocals_mel_band_roformer.ckpt",
+      "purpose": "two-stem vocal separation",
+      "source": "https://huggingface.co/KimberleyJSN/melbandroformer",
+      "license": "MIT (relicensed by the original author on 2026-04-22)",
+      "loader": "audio-separator 0.44.5",
+      "sha256": "87201f4d31afb5bc79993230fc49446918425574db48c01c405e44f365c7559e",
+      "required": true,
+      "verification": "downloaded from the pinned audio-separator registry and hash-verified"
+    },
+    {
+      "id": "torchcrepe-full",
+      "purpose": "neural monophonic pitch tracking",
+      "source": "https://github.com/maxrmorrison/torchcrepe",
+      "license": "MIT",
+      "loader": "torchcrepe 0.0.24 with torch 2.11.0",
+      "required": false
+    },
+    {
+      "id": "laion-larger-clap-music-and-speech",
+      "filename": "pytorch_model.bin",
+      "purpose": "music-aware audio-text semantic similarity",
+      "source": "https://huggingface.co/laion/larger_clap_music_and_speech",
+      "license": "Apache-2.0",
+      "loader": "transformers 5.14.1",
+      "sha256": "b73c5e596fda5b29b522a1ab3f0842977fe2b147bf8b78c2ec5f7ae6267038a1",
+      "required": false
+    },
+    {
+      "id": "singmos-pro-1.1.2",
+      "filename": "ft_wav2vec2_large_ll60k_mdf_p1_200epochs_all_192epochs.pth",
+      "purpose": "singing naturalness prediction",
+      "source": "https://github.com/South-Twilight/SingMOS/releases/tag/ckpt_v3",
+      "license": "MIT code; the upstream release declares no separate checkpoint licence",
+      "loader": "SingMOS v1.1.2 commit e55cf0713d487731ddf1661068a1aa0995e00337",
+      "sha256": "85be234135b95d0264269d5f5ce00a361ae8fbd5ed4e6551f13cc6ce3b198f6a",
+      "required": false
+    },
+    {
+      "id": "s3prl-wav2vec2-large-ll60k",
+      "filename": "wav2vec_vox_new.pt",
+      "purpose": "offline SSL backbone required by SingMOS-Pro",
+      "source": "https://huggingface.co/s3prl/converted_ckpts",
+      "license": "the converted-checkpoint repository declares no model-card licence; verify before redistribution",
+      "loader": "s3prl 0.4.18 with torch and torchaudio 2.8.0",
+      "sha256": "ba1dd46c4bfc9588b6679b66fa5a1e217d285f260117771dc19e1208fa2421cb",
+      "required": false
+    }
+  ]
+}
