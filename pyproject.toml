@@ -1,0 +1,48 @@
+[project]
+name = "cutetuner"
+version = "0.1.0"
+description = "A private, local-first vocal pitch-correction and polish laboratory."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "fastapi>=0.116",
+  "numpy>=2.0,<2.5",
+  "platformdirs>=4.3",
+  "python-multipart>=0.0.20",
+  "scipy>=1.13",
+  "soundfile>=0.12",
+  "uvicorn>=0.35",
+]
+
+[project.optional-dependencies]
+neural = [
+  "numba==0.66.0",
+  "torch==2.11.0",
+  "torchaudio==2.11.0",
+  "torchcrepe==0.0.24",
+  "tqdm>=4.66",
+]
+quality = [
+  "numba==0.66.0",
+  "torch==2.11.0",
+  "torchaudio==2.11.0",
+  "torchcrepe==0.0.24",
+]
+dev = ["httpx>=0.28", "pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+cutetuner = "voiceforge.cli:main"
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/voiceforge"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
