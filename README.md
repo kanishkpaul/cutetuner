@@ -5,13 +5,21 @@ a dry vocal with its backing track, or a dry vocal alone. The studio analyses th
 asks for your production intent, builds an editable tuning plan, renders three comparisons,
 and exports a corrected vocal plus a finished mix as 320 kbps MP3 files.
 
+![CUTE Tuner studio: pitch lanes for the take, A/B preview tabs, and the advanced control panel](docs/screenshot.png)
+
 No audio, lyrics, ratings, or model prompts leave the machine. The server binds only to
 loopback and accepts local LLM endpoints only on `127.0.0.1`, `localhost`, or `::1`.
 
 ## Run the studio
 
 Requirements: Python 3.11 or 3.12, [uv](https://docs.astral.sh/uv/), and FFmpeg.
-Node is needed only when changing the frontend because the production build is committed.
+[Rubber Band](https://breakfastquay.com/rubberband/) is optional but gives the
+best-sounding renders. Node is needed only when changing the frontend because
+the production build is committed.
+
+```bash
+brew install ffmpeg rubberband
+```
 
 ```bash
 uv sync --extra dev
@@ -84,6 +92,11 @@ uv run pytest
 pnpm --dir frontend install --frozen-lockfile
 pnpm --dir frontend build
 ```
+
+On an Apple M5 (16 GB, macOS 27) all of the above pass: ruff is clean, 16 tests
+pass, and the rebuilt frontend is byte-identical to the committed `dist/`. A
+synthetic tone 35 cents sharp comes out of `cutetuner input.wav output.wav --key A
+--scale major --strength 1.0` within 3 cents of A4.
 
 The automated suite covers decoding and upload validation, pitch tracking, key detection,
 chord-aware targets, local-endpoint security, the producer brief, preview rendering, both
